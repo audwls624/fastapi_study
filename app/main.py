@@ -10,7 +10,7 @@ from starlette.responses import Response
 from app.common.config import conf
 from app.database.connections import db, Base
 from app.database.schema import User
-from app.routes import index
+from app.routes import index, auth
 
 
 def create_app():
@@ -40,6 +40,7 @@ app = FastAPI()
 db.init_app(app, **conf_dict)
 
 app.include_router(index.router)
+app.include_router(auth.router, tags=["Authentication"], prefix="/api")
 
 
 if __name__ == "__main__":
