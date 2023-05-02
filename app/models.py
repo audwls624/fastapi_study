@@ -9,10 +9,10 @@ class UserRegister(BaseModel):
 
 
 class SnsType(str, Enum):
-    email: str = 'email'
-    facebook: str = 'facebook'
-    google: str = 'google'
-    kakao: str = 'kakao'
+    email: str = 'Email'
+    facebook: str = 'Facebook'
+    google: str = 'Google'
+    kakao: str = 'Kakao'
 
 
 class Token(BaseModel):

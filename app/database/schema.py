@@ -167,6 +167,6 @@ class User(Base, BaseMixin):
     name = Column(String(length=255), nullable=True)
     phone_number = Column(String(length=20), nullable=True, unique=True)
     profile_image = Column(String(length=1000), nullable=True)
-    sns_type = Column(Enum('Facebook', 'Google', 'Kakao'), nullable=True)
+    sns_type = Column(Enum('Facebook', 'Google', 'Kakao', 'Email'), nullable=True)
     marketing_agree = Column(Boolean, nullable=True, default=True)
 
