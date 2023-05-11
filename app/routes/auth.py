@@ -6,7 +6,7 @@ from starlette.responses import JSONResponse
 from app.database.connections import db
 from app.database.schema import User
 from app.models import SnsType, Token, UserToken, UserRegister
-from app.utils import create_access_token, is_email_exist
+from app.utils.common_utils import create_access_token, is_email_exist
 
 router = APIRouter(prefix="/auth")
 
@@ -59,9 +59,11 @@ async def login(sns_type: SnsType, user_info: UserRegister):
     if not user_info.email or not user_info.password:
         result.update(msg="Email and Password must be provided'")
         return JSONResponse(status_code=400, content=result)
+
     if not is_exist:
         result.update(msg="NO_MATCH_USER")
         return JSONResponse(status_code=400, content=result)
+
     user = User.get(email=user_info.email)
     is_verified = bcrypt.checkpw(user_info.password.encode("utf-8"), user.pw.encode("utf-8"))
     if not is_verified:
